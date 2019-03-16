@@ -1,5 +1,5 @@
 ---
-title: "Project 3 - Example Main Script"
+title: "Project 3 - Baseline"
 author: "Chengliang Tang, Tian Zheng"
 output: html_notebook
 ---
@@ -93,7 +93,7 @@ if(run.feature.train){
   label_train <- dat_train$label
 }
 
-#save(dat_train, file="./output/feature_train.RData")
+save(dat_train, file="../output/feature_train.RData")
 ```
 
 
@@ -133,7 +133,7 @@ Visualize cross-validation results.
 if(run.cv){
   load("../output/err_cv.RData")
   plot(model_values, err_cv[,1], xlab="Interaction Depth", ylab="CV Error",
-       main="Cross Validation Error", type="n", ylim=c(0, 0.25))
+       main="Cross Validation Error", type="n", ylim=c(0, 0.05))
   points(model_values, err_cv[,1], col="blue", pch=16)
   lines(model_values, err_cv[,1], col="blue")
   arrows(model_values, err_cv[,1]-err_cv[,2], model_values, err_cv[,1]+err_cv[,2], 
