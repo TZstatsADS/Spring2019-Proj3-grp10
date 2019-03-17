@@ -1,12 +1,10 @@
 ---
 title: "Project 3"
-author: "Chengliang Tang, Tian Zheng"
+author: "Spring-2019 Group 10"
 output: html_notebook
 ---
 
 In your final repo, there should be an R markdown file that organizes **all computational steps** for evaluating your proposed image classification framework. 
-
-This file is currently a template for running evaluation experiments of image analysis (or any predictive modeling). You should update it according to your codes but following precisely the same structure. 
 
 ```{r}
 if(!require("EBImage")){
@@ -34,7 +32,7 @@ Set the working directory to the image folder. Specify the training and the test
 
 ```{r wkdir, eval=FALSE}
 set.seed(2019)
-setwd("/Users/zeyu/Downloads/Spring2019-Proj3-spring2019-proj3-grp10") 
+setwd("/Users/zeyu/Documents/GitHub/Spring2019-Proj3-spring2019-proj3-grp10") 
 # here replace it with your own path or manually set it in RStudio to where this rmd file is located. 
 # use relative path for reproducibility
 ```
@@ -70,12 +68,15 @@ Using cross-validation or independent test set evaluation, we compare the perfor
 ```{r model_setup}
 model_values <- seq(3, 11, 2)
 model_labels = paste("GBM with depth =", model_values)
-model_values_xgboost <- expand.grid(max_depth = c(4,6,8),eta =c(0.1,0.3,0.5))
+model_values_xgboost <- expand.grid(max_depth=c(4,6,8),
+                                    eta=c(0.1,0.3,0.5),
+                                    subsample=c(0.5,1,1.5),
+                                    min_child_weight=c(0.5,1,1.5))
 model_labels_xgboost <- paste("XGBoost with depth =",
                               model_values_xgboost$max_depth,
                               "XGBoost with eta =",
                               model_values_xgboost$eta)
-##### Tuning paramter: gamma, max_depth, min_child_weight
+##### Tuning paramter: gamma, max_depth, min_child_weight, eta, subsample
 ```
 
 ## Step 2: import training images class labels.
@@ -230,6 +231,12 @@ save(fit_train_xgboost, file="../output/fit_train_xgboost.RData")
 
 ## Step 5: Super-resolution for test images
 
+```{r}
+source("../lib/superResolution.R")
+source("../lib/psnr.R")
+```
+
+
 ### GBM model
 Feed the final training model with the completely holdout testing data. 
 + `superResolution.R`
@@ -238,7 +245,6 @@ Feed the final training model with the completely holdout testing data.
   + Input: an R object that contains tuned predictors.
   + Output: construct high-resolution versions for each low-resolution test image.
 ```{r superresolution}
-source("../lib/superResolution.R")
 test_dir <- "../data/test_set/" # This will be modified for different data sets.
 test_LR_dir <- paste(test_dir, "LR/", sep="")
 test_HR_dir <- paste(test_dir, "HR/", sep="")
@@ -258,7 +264,6 @@ Feed the final training model with the completely holdout testing data.
   + Input: an R object that contains tuned predictors.
   + Output: construct high-resolution versions for each low-resolution test image.
 ```{r superresolution_xgboost}
-source("../lib/superResolution.R")
 test_dir <- "../data/test_set/" # This will be modified for different data sets.
 test_LR_dir <- paste(test_dir, "LR/", sep="")
 test_HR_dir <- paste(test_dir, "HR_xgboost/", sep="")
