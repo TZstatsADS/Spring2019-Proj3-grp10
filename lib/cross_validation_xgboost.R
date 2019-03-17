@@ -16,7 +16,7 @@ cv.function_xgboost <- function(X.train, y.train, modelvalues, K){
     #par <- list(depth=d)
     fit <- train_xgboost(train.data, train.label, modelvalues)
     pred <- test(fit, test.data)
-    pred <- pred$numericpred
+    # pred <- pred$numericpred
     cv.error[i] <- mean((pred - test.label)^2)  
     
   }			

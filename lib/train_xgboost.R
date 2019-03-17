@@ -1,4 +1,4 @@
-train.xgboost <- function(dat_train, label_train, par=NULL){
+train_xgboost <- function(dat_train, label_train, par=NULL){
   
   library("xgboost")
   
@@ -11,8 +11,8 @@ train.xgboost <- function(dat_train, label_train, par=NULL){
     max_depth <- par$max_depth
     eta <- par$eta
     #nrounds = par$nrounds
-    subsample = par$subsample
-    min_child_weight = par$min_child_weight
+    #subsample = par$subsample
+    #min_child_weight = par$min_child_weight
     
   }
   
@@ -30,8 +30,8 @@ train.xgboost <- function(dat_train, label_train, par=NULL){
                            nrounds=10,
                            objective="reg:linear", 
                            verbose=FALSE,
-                           subsample = subsample,
-                           min_child_weight = min_child_weight
+                           subsample = 1,
+                           min_child_weight = 1
     )
     modelList[[i]] <- list(fit=fit_xgboost)
   }
