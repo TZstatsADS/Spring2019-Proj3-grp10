@@ -7,7 +7,7 @@
 ### load libraries
 library("EBImage")
 
-feature <- function(LR_dir, HR_dir, n_points=100){
+feature <- function(LR_dir, HR_dir, n_points=1000){
   
   ### Construct process features for training images (LR/HR pairs)
   
