@@ -5,13 +5,13 @@
 
 Term: Spring 2019
 
-+ Team ##
++ Team Group 10
 + Team members
-	+ team member 1
-	+ team member 2
-	+ team member 3
-	+ team member 4
-	+ team member 5
+	+ Karsok, Max mk4192@columbia.edu
+	+ Lin, Nelson nl2600@columbia.edu
+	+ Su, Feng fs2658@columbia.edu
+	+ Yang, Zeyu zy2327@columbia.edu
+	+ Zhang, Liwei lz2655@columbia.edu
 
 + Project summary: In this project, we created a classification engine for enhance the resolution of images. 
 	
