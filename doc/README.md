@@ -2,4 +2,4 @@
 
 ### Doc folder
 
-The doc directory contains the report or presentation files. It can have subfolders.  
+The doc directory contains the codes for baseline(GBM) and XGBoost in _main.Rmd_ file. The _main.nb.html_ file contains the r notebook of the _main.Rmd_ file.
